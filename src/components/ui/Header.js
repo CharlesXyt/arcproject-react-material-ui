@@ -6,9 +6,12 @@ import {
     useScrollTrigger,
     Tabs,
     Tab,
-    Button
+    Button,
+    Menu,
+    MenuItem
 } from '@material-ui/core'
 import {Link} from 'react-router-dom'
+
 
 import logo from '../../assets/logo.svg'
 
@@ -53,7 +56,10 @@ function ElevationScroll(props) {
           height:"45px"
       },
       logContainer:{
-          padding:0
+          padding:0,
+          "&:hover":{
+              backgroundColor:"transparent"
+          }
       }
   }))
 
@@ -62,6 +68,9 @@ export default function Header(props){
 
     const classes = useStyles()
     const [value,setValue] = useState(0)
+    const [anchorEl,setAnchorEl] = useState(null)
+    const [open,setOpen] = useState(false)
+
     useEffect(()=>{
         if(window.location.pathname === "/" && value!== 0){
             setValue(0)
@@ -82,25 +91,57 @@ export default function Header(props){
         setValue(valuePassed)
     }
 
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget)
+        setOpen(true)
+    }
+
+    const handleClose = (event) => {
+        setAnchorEl(null)
+        setOpen(false)
+    }
+
     return (
         <React.Fragment>
             <ElevationScroll>
                 <AppBar position="fixed">
                     <Toolbar disableGutters>
-                        <Button component={Link} to="/" className={classes.logContainer} onClick={() => setValue(0)}>
+                        <Button component={Link} to="/" disableRipple className={classes.logContainer} onClick={() => setValue(0)}>
                             <img alt="company logo" className={classes.logo} src={logo}/>
                         </Button>
                         
                         <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor="primary">
                             <Tab className={classes.tab} component={Link} to="/" label="Home"></Tab>
-                            <Tab className={classes.tab} component={Link} to="/services" label="Services"></Tab>
+                            <Tab 
+                                aria-owns={anchorEl ? "simple-menu" : undefined}
+                                aria-haspopup={anchorEl ? "true" : undefined}
+                                className={classes.tab} 
+                                component={Link} 
+                                onMouseOver={(event) => handleClick(event)}
+                                to="/services" 
+                                label="Services"
+                                ></Tab>
                             <Tab className={classes.tab} component={Link} to="/revolution" label="The Revolution"></Tab>
                             <Tab className={classes.tab} component={Link} to="/about" label="About us"></Tab>
                             <Tab className={classes.tab} component={Link} to="/contact" label="Contact us"></Tab>
                         </Tabs>
-                        <Button variant="contained" color="secondary" className={classes.button}>
+                        <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">
                             Free Estimate
                         </Button>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                onMouseLeave:handleClose
+                            }}
+                        >
+                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/services">Services</MenuItem>
+                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/customsoftware">Custom Software Developement</MenuItem>
+                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/mobileapp">Mobile App Developement</MenuItem>
+                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/websites">Website App Software Developement</MenuItem>
+                        </Menu>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
