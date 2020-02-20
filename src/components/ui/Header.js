@@ -60,6 +60,17 @@ function ElevationScroll(props) {
           "&:hover":{
               backgroundColor:"transparent"
           }
+      },
+      menu:{
+          backgroundColor:theme.palette.common.blue,
+          color:"white"
+      },
+      menuItem:{
+          ...theme.typography.tab,
+          opacity:0.7,
+          "&:hover":{
+            opacity:1
+          }
       }
   }))
 
@@ -133,14 +144,18 @@ export default function Header(props){
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}
+                            classes={{
+                                paper:classes.menu
+                            }}
                             MenuListProps={{
                                 onMouseLeave:handleClose
                             }}
+                            elevation={0}
                         >
-                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/services">Services</MenuItem>
-                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/customsoftware">Custom Software Developement</MenuItem>
-                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/mobileapp">Mobile App Developement</MenuItem>
-                            <MenuItem onClick={() => {handleClose();setValue(1)}} component={Link} to="/websites">Website App Software Developement</MenuItem>
+                            <MenuItem classes={{root:classes.menuItem}} onClick={() => {handleClose();setValue(1)}} component={Link} to="/services">Services</MenuItem>
+                            <MenuItem classes={{root:classes.menuItem}} onClick={() => {handleClose();setValue(1)}} component={Link} to="/customsoftware">Custom Software Developement</MenuItem>
+                            <MenuItem classes={{root:classes.menuItem}} onClick={() => {handleClose();setValue(1)}} component={Link} to="/mobileapp">Mobile App Developement</MenuItem>
+                            <MenuItem classes={{root:classes.menuItem}} onClick={() => {handleClose();setValue(1)}} component={Link} to="/websites">Website App Software Developement</MenuItem>
                         </Menu>
                     </Toolbar>
                 </AppBar>
