@@ -114,6 +114,9 @@ function ElevationScroll(props) {
       },
       drawerItemSelectedStyle:{
         opacity:1
+      },
+      appBar:{
+          zIndex: theme.zIndex.modal + 1
       }
   }))
 
@@ -129,63 +132,39 @@ export default function Header(props){
     const [menuItemSelected,setMenuItemSelected] = useState(-1)
     const [openDrawer,setOpenDrawer] = useState(false)
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const menuItem = [
+        {name:"Services",link:"/services",activeIndex:1,selectedIndex:0},
+        {name:"Custom Software Developement",link:"/customsoftware",activeIndex:1,selectedIndex:1},
+        {name:"Mobile App Developement",link:"/mobileapp",activeIndex:1,selectedIndex:2},
+        {name:"Website App Software Developement",link:"/websites",activeIndex:1,selectedIndex:3}
+    ]
+
+    const routes = [
+        {name:"Home",link:"/",activeIndex:0},
+        {name:"Services",link:"/services",activeIndex:1,ariaOwns:anchorEl ? "simple-menu" : undefined,
+            ariaHaspopup:anchorEl ? "true" : undefined,onMouseOver: (event) => handleClick(event)},
+        {name:"The Revolution",link:"/revolution",activeIndex:2},
+        {name:"About us",link:"/about",activeIndex:3},
+        {name:"Contact us",link:"/contact",activeIndex:4},
+    ]
 
 
     useEffect(()=>{
-        switch(window.location.pathname){
-            case "/":
-                if(value !== 0){
-                    setValue(0)
-                }
-                break;
-            case "/services":
-                if(value !== 1 || menuItemSelected !== 0){
-                    setValue(1)
-                    setMenuItemSelected(0)
-                }
-                break;
-            case "/revolution":
-                if(value !== 2){
-                    setValue(2)
-                }
-                break;
-            case "/about":
-                if(value !== 3){
-                    setValue(3)
-                }
-                break;
-            case "/contact":
-                if(value !== 4){
-                    setValue(4)
-                }
-                break;
-            case "/estimate":
-                if(value !== 5){
-                    setValue(5)
-                }
-                break;
-            case "/customsoftware":
-                if(value !== 1 || menuItemSelected !== 1){
-                    setValue(1);
-                    setMenuItemSelected(1)
-                }
-                break;
-            case "/mobileapp":
-                if(value !== 1 || menuItemSelected !== 2){
-                    setValue(1);
-                    setMenuItemSelected(2)
-                }
-                break;
-            case "/websites":
-                if(value !== 1 || menuItemSelected !== 3){
-                    setValue(1);
-                    setMenuItemSelected(3)
-                }
-                break;
-            default:
-                break;
-        }
-    },[value,menuItemSelected])
+        [...menuItem,...routes].forEach(route => {
+            switch(window.location.pathname){
+                case `${route.link}`:
+                    if(value !== route.activeIndex){
+                        setValue(route.activeIndex)
+                        if(route.selectedIndex && route.selectedIndex !== menuItemSelected){
+                            setMenuItemSelected(route.selectedIndex)
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        })
+    },[value,menuItemSelected,menuItem,routes])
 
     const handleChange = (event,valuePassed) => {
         setValue(valuePassed)
@@ -209,79 +188,97 @@ export default function Header(props){
         setMenuItemSelected(index)
     }
 
-    const menuItem = [{name:"Services",link:"/services"},{name:"Custom Software Developement",link:"/customsoftware"},{name:"Mobile App Developement",link:"/mobileapp"},{name:"Website App Software Developement",link:"/websites"}]
+   
 
     const tabs = (
         <React.Fragment>
-            
-                        
-                        <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor="primary">
-                            <Tab className={classes.tab} component={Link} to="/" label="Home"></Tab>
-                            <Tab 
-                                aria-owns={anchorEl ? "simple-menu" : undefined}
-                                aria-haspopup={anchorEl ? "true" : undefined}
-                                className={classes.tab} 
-                                component={Link} 
-                                onMouseOver={(event) => handleClick(event)}
-                                to="/services" 
-                                label="Services"
-                                ></Tab>
-                            <Tab className={classes.tab} component={Link} to="/revolution" label="The Revolution"></Tab>
-                            <Tab className={classes.tab} component={Link} to="/about" label="About us"></Tab>
-                            <Tab className={classes.tab} component={Link} to="/contact" label="Contact us"></Tab>
-                        </Tabs>
-                        <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">
-                            Free Estimate
-                        </Button>
-                        <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            open={openMenu}
-                            onClose={handleClose}
-                            classes={{
-                                paper:classes.menu
-                            }}
-                            MenuListProps={{
-                                onMouseLeave:handleClose
-                            }}
-                            elevation={0}
-                        >
-                            {menuItem.map((item,index)=>{
-                                return (
-                                    <MenuItem key={item} classes={{root:classes.menuItem}} onClick={(event) => handleMenuItemClick(event,index)} component={Link} to={item.link} selected={index === menuItemSelected}>{item.name}</MenuItem>
-                                )
-                            })}                          
-                        </Menu>
+            <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor="primary">
+                {routes.map((item,index)=>(
+                    <Tab 
+                        key={"tab "+index}
+                        className={classes.tab} 
+                        component={Link} 
+                        to={item.link} 
+                        label={item.name} 
+                        aria-owns={item.ariaOwns} 
+                        aria-haspopup={item.ariaHaspopup} 
+                        onMouseOver={item.onMouseOver}/>
+                ))}
+            </Tabs>
+            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">
+                Free Estimate
+            </Button>
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleClose}
+                classes={{
+                    paper:classes.menu
+                }}
+                MenuListProps={{
+                    onMouseLeave:handleClose
+                }}
+                elevation={0}
+                keepMounted
+                //  for search engine
+                style={{zIndex:1302}}
+                // menu item above the app bar
+            >
+                {menuItem.map((item,index)=>{
+                    return (
+                        <MenuItem 
+                            key={"menu "+index} 
+                            classes={{root:classes.menuItem}} 
+                            onClick={(event) => handleMenuItemClick(event,index)} 
+                            component={Link} 
+                            to={item.link} 
+                            selected={index === menuItemSelected}
+                            >
+                            {item.name}</MenuItem>
+                    )
+                })}                          
+            </Menu>
         </React.Fragment>
     )
 
     const drawer = (
         <React.Fragment>
             <SwipeableDrawer 
-            disableBackdropTransition={!iOS} 
-            disableDiscovery={iOS} 
-            open={openDrawer}
-             onClose={()=> setOpenDrawer(false)} 
-             onOpen={() => setOpenDrawer(true)}
-             classes={{paper:classes.drawer}}
-             >
+                disableBackdropTransition={!iOS} 
+                disableDiscovery={iOS} 
+                open={openDrawer}
+                onClose={()=> setOpenDrawer(false)} 
+                onOpen={() => setOpenDrawer(true)}
+                classes={{paper:classes.drawer}}
+                >
+                <div className={classes.toolbarMargin}/>
                 <List disablePadding>
-                    <ListItem className={value===0 ? [classes.drawerItem,classes.drawerItemSelectedStyle].join(" ") : classes.drawerItem} divider button onClick={() => {setOpenDrawer(false); setValue(0)}} component={Link} to="/" selected={value === 0}>
-                        <ListItemText  disableTypography>Home</ListItemText>
-                    </ListItem>
-                    <ListItem className={value===1 ? [classes.drawerItem,classes.drawerItemSelectedStyle].join(" ") : classes.drawerItem} divider button onClick={() => {setOpenDrawer(false); setValue(1)}} component={Link} to="/services" selected={value === 1}>
-                        <ListItemText  disableTypography>Services</ListItemText>
-                    </ListItem>
-                    <ListItem className={value===2 ? [classes.drawerItem,classes.drawerItemSelectedStyle].join(" ") : classes.drawerItem} divider button onClick={() => {setOpenDrawer(false); setValue(2)}} component={Link} to="/revolution" selected={value === 2}>
-                        <ListItemText  disableTypography>The Revolution</ListItemText>
-                    </ListItem>
-                    <ListItem className={value===3 ? [classes.drawerItem,classes.drawerItemSelectedStyle].join(" ") : classes.drawerItem} divider button onClick={() => {setOpenDrawer(false); setValue(3)}} component={Link} to="/about" selected={value === 3}>
-                        <ListItemText  disableTypography>About us</ListItemText>
-                    </ListItem>
-                    <ListItem className={value===4 ? [classes.drawerItem,classes.drawerItemSelectedStyle].join(" ") : classes.drawerItem} divider button onClick={() => {setOpenDrawer(false); setValue(4)}} component={Link} to="/contact" selected={value === 4}>
-                        <ListItemText  disableTypography>Contact Us</ListItemText>
-                    </ListItem>
-                    <ListItem className={value===5 ? [classes.drawerItem,classes.drawerItemEstimate,classes.drawerItemSelectedStyle].join(" "):[classes.drawerItem,classes.drawerItemEstimate].join(" ")} divider button onClick={() => {setOpenDrawer(false); setValue(5)}} component={Link} to="/estimate" selected={value === 5}>
+
+                    {routes.map(item=>(
+                        <ListItem 
+                            key={"draw "+item.activeIndex} 
+                            className={classes.drawerItem} 
+                            classes={{selected:classes.drawerItemSelectedStyle}}
+                            divider 
+                            button 
+                            onClick={() => {setOpenDrawer(false); setValue(0)}} 
+                            component={Link} 
+                            to={item.link} 
+                            selected={value === item.activeIndex}
+                            >
+                            <ListItemText  disableTypography>{item.name}</ListItemText>
+                        </ListItem>
+                    ))}
+                    <ListItem 
+                        className={[classes.drawerItem,classes.drawerItemEstimate].join(" ")} 
+                        classes={{selected:classes.drawerItemSelectedStyle}}
+                        divider 
+                        button 
+                        onClick={() => {setOpenDrawer(false); setValue(5)}} 
+                        component={Link} 
+                        to="/estimate" 
+                        selected={value === 5}>
                         <ListItemText  disableTypography>Free Estimate</ListItemText>
                     </ListItem>
                 </List>
@@ -296,7 +293,7 @@ export default function Header(props){
     return (
         <React.Fragment>
             <ElevationScroll>
-                <AppBar position="fixed">
+                <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar disableGutters>
                         <Button component={Link} to="/" disableRipple className={classes.logContainer} onClick={() => {setValue(0)}}>
                             <img alt="company logo" className={classes.logo} src={logo}/>
