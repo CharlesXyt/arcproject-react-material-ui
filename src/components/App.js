@@ -4,6 +4,7 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import theme from './ui/theme'
 import Header from './ui/Header'
 import Footer from './ui/Footer'
+import LandingPage from './LandingPage'
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Header value={value} setValue={setValue} menuItemSelected={menuItemSelected} setMenuItemSelected={setMenuItemSelected}/>
         <Switch>
-          <Route exact path="/" component={() => <div>home</div>}></Route>
+          <Route exact path="/" component={() => <LandingPage/>}></Route>
           <Route exact path="/services" component={() => <div>services</div>}></Route>
           <Route exact path="/customsoftware" component={() => <div>customsoftware</div>}></Route>
           <Route exact path="/mobileapp" component={() => <div>mobileapp</div>}></Route>
