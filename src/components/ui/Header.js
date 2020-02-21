@@ -123,13 +123,14 @@ function ElevationScroll(props) {
 
 export default function Header(props){
 
+    const {value,setValue,menuItemSelected,setMenuItemSelected} = props
     const classes = useStyles()
     const theme = useTheme()
     const matches = useMediaQuery(theme.breakpoints.down("md"))
-    const [value,setValue] = useState(0)
+
     const [anchorEl,setAnchorEl] = useState(null)
     const [openMenu,setOpenMenu] = useState(false)
-    const [menuItemSelected,setMenuItemSelected] = useState(-1)
+
     const [openDrawer,setOpenDrawer] = useState(false)
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
     const menuItem = [
@@ -164,7 +165,7 @@ export default function Header(props){
                     break;
             }
         })
-    },[value,menuItemSelected,menuItem,routes])
+    },[value,menuItemSelected,menuItem,routes,setValue,setMenuItemSelected])
 
     const handleChange = (event,valuePassed) => {
         setValue(valuePassed)
