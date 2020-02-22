@@ -81,7 +81,7 @@ export default function Footer(props){
                         <Grid container direction="column" spacing={2}>
                             <Grid item component={Link} to="/services" className={classes.link} onClick={() =>{setValue(1); setMenuItemSelected(0);} }>Services</Grid>
                             <Grid item component={Link} to="/customsoftware" className={classes.link} onClick={() =>{setValue(1); setMenuItemSelected(1);} }>Custom Software Development</Grid>
-                            <Grid item component={Link} to="/mobileapp" className={classes.link} onClick={() =>{setValue(1); setMenuItemSelected(2); } }>Mobile App Development</Grid>
+                            <Grid item component={Link} to="/mobileapp" className={classes.link} onClick={() =>{setValue(1); setMenuItemSelected(2); } }>IOS/Android App Development</Grid>
                             <Grid item component={Link} to="/websites" className={classes.link} onClick={() =>{setValue(1); setMenuItemSelected(3);} }>Website Development</Grid>
                         </Grid>
                     </Grid>

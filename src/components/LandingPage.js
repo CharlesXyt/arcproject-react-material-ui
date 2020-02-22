@@ -4,10 +4,15 @@ import {makeStyles} from '@material-ui/core/styles'
 import {
     Grid,
     Button,
-    Typography
+    Typography,
+    useMediaQuery,
+    useTheme
 } from '@material-ui/core'
 
 import animationData from '../animations/landinganimation/data'
+import customSoftwareIcon from '../assets/Custom Software Icon.svg'
+import mobileAppsIcon from '../assets/mobileIcon.svg'
+import websitesIcon from '../assets/websiteIcon.svg'
 
 const useStyles = makeStyles(theme => ({
     animation:{
@@ -34,18 +39,20 @@ const useStyles = makeStyles(theme => ({
     buttonContainer:{
         marginTop:"1em"
     },
+    learnButton:{
+        ...theme.typography.learnButton,
+        fontSize:"0.7rem",
+        height:35,
+        [theme.breakpoints.down('sm')]:{
+            marginBottom:"2em"
+        }
+    },
     learnButtonHero:{
-        borderColor:theme.palette.common.blue,
-        borderWidth:2,
-        textTransform:"none",
-        borderRadius:50,
-        fontFamily:"Roboto",
-        fontWeight:"bold",
-        fontSize:"0.9rem",
+       ...theme.typography.learnButton,
         height:45,
         width:145,
-        color:theme.palette.common.blue
-
+        fontSize:"0.9rem",
+        padding:5
     },
     mainContainer:{
         marginTop:"5em",
@@ -62,12 +69,34 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('xs')]:{
             marginLeft:0
         }
+    },
+    specialText:{
+        fontFamily:"Pacifico",
+        color:theme.palette.common.orange
+    },
+    subtitle:{
+        marginBottom:"1em"
+    },
+    icon:{
+        marginLeft:"2em",
+        [theme.breakpoints.down("xs")]:{
+            marginLeft:0,
+        }
+    },
+    serviceContainer:{
+        marginTop:"2em",
+        [theme.breakpoints.down("sm")]:{
+            padding:"2em"
+        }
     }
 }))
 
 
 export default function LandingPage(){
     const classes = useStyles()
+    const theme = useTheme()
+    const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
+
     const defaultOptions = {
         loop: true,
         autoplay: true, 
@@ -78,8 +107,8 @@ export default function LandingPage(){
       };
     return (
         <Grid container direction="column" className={classes.mainContainer}>
-            <Grid item >
-                <Grid container justify="flex-end" alignItems="center">
+            <Grid item > {/*hero  block*/}
+                <Grid container justify={matchesSM ? "center" : "flex-end"} alignItems="center">
                     <Grid sm item className={classes.heroTextContainer}> 
                         <Typography variant="h2" align="center">
                             Bring West Coast Technology 
@@ -95,11 +124,75 @@ export default function LandingPage(){
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid sm item className={classes.animation}>
+                    <Grid sm item className={classes.animation} >
                         <Lottie  options={defaultOptions} height={"100%"} width={"100%"}/>
                     </Grid>
                 </Grid>
             </Grid>
+
+            <Grid item>
+                <Grid container className={classes.serviceContainer} justify={matchesSM ? "center" : undefined}>
+                    <Grid item style={{marginLeft: matchesSM ? 0 : "5em", textAlign:matchesSM ? "center" : undefined}}>
+                        <Typography variant="h4">
+                            Custom Software Development 
+                        </Typography>
+                        <Typography variant="subtitle1" className={classes.subtitle}>
+                            Save Energy. Save Time. Save Money
+                        </Typography>
+                        <Typography variant="subtitle1">
+                            Complete digital solution, from investigation to{" "}
+                            <span className={classes.specialText}>
+                                celebration
+                            </span>
+                        </Typography>
+                        <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                    </Grid>
+                    <Grid item className={classes.icon}>
+                        <img alt="custom software icon" src={customSoftwareIcon}/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid item>
+                <Grid container className={classes.serviceContainer} justify={matchesSM ? "center" : "flex-end"}>
+                    <Grid item style={{textAlign:matchesSM ? "center" : undefined}}>
+                        <Typography variant="h4">
+                            IOS/Andriod App Development 
+                        </Typography>
+                        <Typography variant="subtitle1" className={classes.subtitle}>
+                            Extend Functionality. Extend Access. Increase Engagement
+                        </Typography>
+                        <Typography variant="subtitle1">
+                            Integration your web experience or create a standalone{matchesSM ? null : <br/>}
+                            with either mobile platform. 
+                        </Typography>
+                        <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                    </Grid>
+                    <Grid item  style={{marginRight: matchesSM ? 0 : "5em"}}>
+                        <img alt="mobile icon" className={classes.icon} src={mobileAppsIcon}/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid item>
+                <Grid container className={classes.serviceContainer} justify={matchesSM ? "center" : undefined}>
+                    <Grid item style={{marginLeft: matchesSM ? 0 : "5em", textAlign:matchesSM ? "center" : undefined}}>
+                        <Typography variant="h4">
+                            Website Development
+                        </Typography>
+                        <Typography variant="subtitle1" className={classes.subtitle}>
+                            Reach More. Discover More. Sell More.
+                        </Typography>
+                        <Typography variant="subtitle1">
+                            Optimized for Search Engines, built for speed
+                        </Typography>
+                        <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                    </Grid>
+                    <Grid item className={classes.icon}>
+                        <img alt="Website icon" src={websitesIcon}/>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
-            )
+    )
 }
