@@ -262,10 +262,9 @@ export default function LandingPage(props){
                    
                     style={{textAlign:matchesXS ? "center":undefined}} 
                     direction={matchesSM ? "column":"row"}
-                    spacing={matchesXS ? 10 : 0}
                     >
                         <Grid sm item style={{marginLeft:matchesXS ? 0 : matchesSM ? "2em":"5em"}} >
-                            <Grid container direction="column">
+                            <Grid container style={{marginBottom:matchesXS ? "10em":0}}  direction="column">
                                 <Typography variant="h2" style={{color:"white"}}>About us</Typography>
                                 <Typography variant="subtitle2">Let's get personal</Typography>
                                 <Grid item>
