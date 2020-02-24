@@ -31,6 +31,11 @@ export default createMuiTheme({
             textTransform:"none",
             color:"white"
         },
+        body1:{
+            fontWeight:300,
+            fontSize:"1.25rem",
+            color:arcGrey
+        },
         h2:{
             fontFamily:'Raleway',
             textTransform:'none',
