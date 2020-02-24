@@ -1,13 +1,12 @@
 import React from 'react'
 import Lottie from 'react-lottie'
 import {Link} from 'react-router-dom'
-import {makeStyles} from '@material-ui/core/styles'
+import {makeStyles,useTheme} from '@material-ui/core/styles'
 import {
     Grid,
     Button,
     Typography,
     useMediaQuery,
-    useTheme,
     Card,
     CardContent
 } from '@material-ui/core'
@@ -207,8 +206,8 @@ export default function LandingPage(props){
                         </Typography>
                         <Button variant="outlined" className={classes.learnButton} component={Link} to="/mobileapp" onClick={() => {setValue(1);setMenuItemSelected(2)}}>Learn more</Button>
                     </Grid>
-                    <Grid item  style={{marginRight: matchesSM ? 0 : "5em"}}>
-                        <img alt="mobile icon" className={classes.icon} src={mobileAppsIcon}/>
+                    <Grid item className={classes.icon} style={{marginRight: matchesSM ? 0 : "5em"}}>
+                        <img alt="mobile icon"  src={mobileAppsIcon}/>
                     </Grid>
                 </Grid>
             </Grid>
