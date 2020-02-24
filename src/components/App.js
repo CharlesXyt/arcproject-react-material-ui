@@ -7,6 +7,7 @@ import Footer from './ui/Footer'
 import LandingPage from './LandingPage'
 import Services from './Services'
 import CustomSoftware from './CustomSoftware'
+import MobileApp from './MobileApp'
 
 
 function App(props) {
@@ -22,7 +23,7 @@ function App(props) {
           <Route exact path="/" render={(props) => <LandingPage {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/services" render={(props) => <Services {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/customsoftware" render={(props) => <CustomSoftware {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
-          <Route exact path="/mobileapp" component={() => <div>mobileapp</div>}></Route>
+          <Route exact path="/mobileapp" render={(props) => <MobileApp {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/websites" component={() => <div>websites</div>}></Route>
           <Route exact path="/revolution" component={() => <div>revolution</div>}></Route>
           <Route exact path="/about" component={() => <div>about</div>}></Route>
