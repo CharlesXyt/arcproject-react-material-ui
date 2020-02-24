@@ -1,5 +1,6 @@
 import React from 'react'
 import Lottie from 'react-lottie'
+import {Link} from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
 import {
     Grid,
@@ -10,6 +11,8 @@ import {
     Card,
     CardContent
 } from '@material-ui/core'
+
+import CallToAction from './ui/CallToAction'
 
 import animationData from '../animations/landinganimation/data'
 import customSoftwareIcon from '../assets/Custom Software Icon.svg'
@@ -125,11 +128,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-export default function LandingPage(){
+export default function LandingPage(props){
     const classes = useStyles()
     const theme = useTheme()
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"))
     const matchesXS = useMediaQuery(theme.breakpoints.down("xs"))
+    const {setValue,setMenuItemSelected} = props
 
     const defaultOptions = {
         loop: true,
@@ -151,10 +155,10 @@ export default function LandingPage(){
                             </Typography>
                         <Grid container justify="center" className={classes.buttonContainer}>
                             <Grid item>
-                                <Button className={classes.estimateButton} variant="contained">Free Estimate</Button>
+                                <Button className={classes.estimateButton} variant="contained" component={Link} to="/estimate" onClick={() => setValue(5)}>Free Estimate</Button>
                             </Grid>
                             <Grid item>
-                                <Button variant="outlined" className={classes.learnButtonHero}>Learn more</Button>
+                                <Button variant="outlined" className={classes.learnButtonHero} component={Link} to="/revolution" onClick={() => setValue(2)}>Learn more</Button>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -162,6 +166,7 @@ export default function LandingPage(){
                         <Lottie  options={defaultOptions} height={"100%"} width={"100%"}/>
                     </Grid>
                 </Grid>
+
             </Grid>
 
             <Grid item>
@@ -179,7 +184,7 @@ export default function LandingPage(){
                                 celebration
                             </span>
                         </Typography>
-                        <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                        <Button variant="outlined" className={classes.learnButton} component={Link} to="/customsoftware" onClick={() => {setValue(1);setMenuItemSelected(1)}}>Learn more</Button>
                     </Grid>
                     <Grid item className={classes.icon}>
                         <img alt="custom software icon" src={customSoftwareIcon}/>
@@ -200,7 +205,7 @@ export default function LandingPage(){
                             Integration your web experience or create a standalone{matchesSM ? null : <br/>}
                             with either mobile platform. 
                         </Typography>
-                        <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                        <Button variant="outlined" className={classes.learnButton} component={Link} to="/mobileapp" onClick={() => {setValue(1);setMenuItemSelected(2)}}>Learn more</Button>
                     </Grid>
                     <Grid item  style={{marginRight: matchesSM ? 0 : "5em"}}>
                         <img alt="mobile icon" className={classes.icon} src={mobileAppsIcon}/>
@@ -220,7 +225,7 @@ export default function LandingPage(){
                         <Typography variant="subtitle1">
                             Optimized for Search Engines, built for speed
                         </Typography>
-                        <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                        <Button variant="outlined" className={classes.learnButton} component={Link} to="/websites" onClick={() => {setValue(1);setMenuItemSelected(3)}}>Learn more</Button>
                     </Grid>
                     <Grid item className={classes.icon}>
                         <img alt="Website icon" src={websitesIcon}/>
@@ -241,7 +246,7 @@ export default function LandingPage(){
                                     <Typography variant="subtitle1">
                                         Visionary insights coupled with cutting-edge technology is a recipe for revolution.
                                     </Typography>
-                                    <Button variant="outlined" className={classes.learnButton}>Learn more</Button>
+                                    <Button variant="outlined" className={classes.learnButton} component={Link} to="/revolution" onClick={() => setValue(2)}>Learn more</Button>
                                 </Grid>
 
                             </Grid>
@@ -252,9 +257,10 @@ export default function LandingPage(){
             </Grid>
 
             <Grid item>
-                <Grid container style={{height:"60em"}} alignItems="center">
+                <Grid container style={{height:"40em"}} alignItems="center"  className={classes.infoBackground}>
                     <Grid item container 
-                    style={{position:"absolute",textAlign:matchesXS ? "center":undefined}} 
+                   
+                    style={{textAlign:matchesXS ? "center":undefined}} 
                     direction={matchesSM ? "column":"row"}
                     spacing={matchesXS ? 10 : 0}
                     >
@@ -263,23 +269,24 @@ export default function LandingPage(){
                                 <Typography variant="h2" style={{color:"white"}}>About us</Typography>
                                 <Typography variant="subtitle2">Let's get personal</Typography>
                                 <Grid item>
-                                    <Button variant="outlined" className={classes.learnButton} style={{color:"white",borderColor:"white"}}>Learn more</Button>
+                                    <Button variant="outlined" className={classes.learnButton} style={{color:"white",borderColor:"white"}} component={Link} to="/about" onClick={() => setValue(3)}>Learn more</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid sm item style={{marginRight:matchesXS ? 0 : matchesSM ? "2em":"5em",textAlign:matchesXS ? "center":"right"}}>
                             <Grid container direction="column">
-                                <Typography variant="h2" style={{color:"white"}}>Contact us</Typography>
+                                <Typography variant="h2" style={{color:"white"}} >Contact us</Typography>
                                 <Typography variant="subtitle2">Say Hello!</Typography>
                                 <Grid item>
-                                    <Button variant="outlined" className={classes.learnButton} style={{color:"white",borderColor:"white"}}>Learn more</Button>
+                                    <Button variant="outlined" className={classes.learnButton} style={{color:"white",borderColor:"white"}} component={Link} to="/contact" onClick={() => setValue(4)}>Learn more</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
-                    
-                    <div className={classes.infoBackground}/>
                 </Grid>
+            </Grid>
+            <Grid item>
+                <CallToAction setValue={setValue}/>
             </Grid>
         </Grid>
     )

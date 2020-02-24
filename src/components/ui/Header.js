@@ -164,6 +164,9 @@ export default function Header(props){
                         }
                     }
                     break;
+                case '/estimate':
+                    setValue(5)
+                    break;
                 default:
                     break;
             }
@@ -209,7 +212,7 @@ export default function Header(props){
                         onMouseOver={item.onMouseOver}/>
                 ))}
             </Tabs>
-            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">
+            <Button variant="contained" color="secondary" className={classes.button}  component={Link} to="/estimate" onClick={() => setValue(5)}>
                 Free Estimate
             </Button>
             <Menu
