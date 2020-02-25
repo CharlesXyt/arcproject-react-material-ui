@@ -262,7 +262,7 @@ export default function Revolution(props){
                     </Grid>
                 </Grid>
                 <Grid item lg style={{alignSelf:"center"}}>
-                    <img src={iterate} alt="iterate"width="100%"/>
+                    <img src={iterate} alt="iterate" width="100%"/>
                 </Grid>
             </Grid>
 
