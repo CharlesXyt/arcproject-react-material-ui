@@ -10,6 +10,7 @@ import CustomSoftware from './CustomSoftware'
 import MobileApp from './MobileApp'
 import Websites from './WebsiteDevelopment'
 import Revolution from './Revolution'
+import About from './About'
 
 function App(props) {
 
@@ -27,7 +28,7 @@ function App(props) {
           <Route exact path="/mobileapp" render={(props) => <MobileApp {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/websites" render={(props) => <Websites {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/revolution" render={(props) => <Revolution {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
-          <Route exact path="/about" component={() => <div>about</div>}></Route>
+          <Route exact path="/about" render={(props) => <About {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/contact" component={() => <div>contact</div>}></Route>
           <Route exact path="/estimate" component={() => <div>estimate</div>}></Route>
         </Switch>
