@@ -1,5 +1,4 @@
 import React from 'react'
-import Lottie from 'react-lottie'
 import {Link} from 'react-router-dom'
 import {makeStyles,useTheme} from '@material-ui/core/styles'
 import {
@@ -92,7 +91,7 @@ export default function WebsiteDevelopment(props){
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item className={classes.paragraphContainer} style={{marginLeft:"1em"}} >
+                <Grid item className={classes.paragraphContainer} style={{marginLeft:matchesSM ? 0 :"1em"}} >
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >It’s no secret that people like to shop online.</Typography>
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >In 2017 over $2.3 trillion was spent in e-commerce, and it’s time for your slice of that pie.</Typography>
                 </Grid>
@@ -109,7 +108,7 @@ export default function WebsiteDevelopment(props){
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item className={classes.paragraphContainer} style={{marginLeft:"1em"}} >
+                <Grid item className={classes.paragraphContainer} style={{marginLeft:matchesSM ? 0 :"1em"}} >
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >Draw people in with a dazzling website. Showing off your products online is a great way to help customers decide what’s right for them before visiting in person.</Typography>
 
                 </Grid>
@@ -126,7 +125,7 @@ export default function WebsiteDevelopment(props){
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item className={classes.paragraphContainer} style={{marginLeft:"1em"}} >
+                <Grid item className={classes.paragraphContainer} style={{marginLeft:matchesSM ? 0 :"1em"}} >
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >Knowledge is power, and data is 21st Century gold. Analyzing this data can reveal hidden patterns and trends in your business, empowering you to make smarter decisions with measurable effects.</Typography>
 
                 </Grid>
@@ -143,7 +142,7 @@ export default function WebsiteDevelopment(props){
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item className={classes.paragraphContainer} style={{marginLeft:"1em"}} >
+                <Grid item className={classes.paragraphContainer} style={{marginLeft:matchesSM ? 0 :"1em"}} >
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >How often have you ever been to the second page of Google results?</Typography>
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >If you’re like us, probably never.</Typography>
                     <Typography variant="body1" align={matchesSM ? "center":undefined} paragraph >Customers don’t go there either, so we make sure your website is designed to end up on top.</Typography>
