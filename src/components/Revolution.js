@@ -60,11 +60,11 @@ export default function Revolution(props){
     return (
         <Grid container direction="column">
             <Grid item className={classes.rowContainer} style={{marginTop:"2em"}}>
-                <Typography variant="h2" gutterBottom style={{fontFamily:"Pacifico",fontWeight:300}}>The Revolution</Typography>
+                <Typography variant="h2" gutterBottom align={matchesMD ? "center": undefined} style={{fontFamily:"Pacifico",fontWeight:300}}>The Revolution</Typography>
             </Grid>
             <Grid item container className={classes.rowContainer} alignItems="center" style={{marginTop:"5em"}}>
                 <Grid item lg>
-                    <img src={vision} alt="mountain"  style={{maxWidth:matchesSM ? "20em":"40em",marginRight:"5em"}}/>
+                    <img src={vision} alt="mountain"  style={{maxWidth:matchesSM ? "20em":"40em",marginRight:matchesSM ? 0 :"5em"}}/>
                 </Grid>
                 <Grid item container direction="column" lg style={{maxWidth:"40em"}}>
                     <Grid item>

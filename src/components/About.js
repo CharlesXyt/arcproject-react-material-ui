@@ -53,7 +53,7 @@ export default function Revolution(props){
         <Grid container direction="column">
 
             <Grid item className={classes.rowContainer} style={{marginTop:"2em",marginBottom:"3em"}}>
-                <Typography variant="h2">About us</Typography>
+                <Typography variant="h2" align={matchesMD ? "center": undefined}>About us</Typography>
             </Grid>
             <Grid container justify="center" className={classes.rowContainer}>
                 <Typography variant="h4" align="center" className={classes.missionStatement}>
