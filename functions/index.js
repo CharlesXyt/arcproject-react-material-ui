@@ -10,9 +10,13 @@ admin.initializeApp()
 //
 
 
-const transporter = nodemailer.createTransport({service:"Gmail",auth:{
-    user:config.user.email,pass:config.user.password
-}});
+const transporter = nodemailer.createTransport({
+    service:"Gmail",
+    auth:{
+        user:config.user.email,
+        pass:config.user.password
+    }
+});
 
 let mailOptions = {
     from:'Arc Development',

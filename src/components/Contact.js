@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 import {makeStyles,useTheme} from '@material-ui/core/styles'
 import {
     Grid,
@@ -125,6 +126,12 @@ export default function Contact(props){
         }
     }
 
+    const onConfirm = () => {
+        axios.get('https://us-central1-astute-sky-251305.cloudfunctions.net/sendMail')
+        .then(res => console.log(res))
+        .catch(error => console.log(error))
+    }
+
     return (
         <Grid container>
             <Grid item container direction="column" justify="center" alignItems="center" lg={4} xl={3} style={{marginBottom:matchesSM? "1em":matchesMD ? "5em":0,marginTop:matchesSM? "1em":matchesMD ? "5em":0}}>
@@ -233,7 +240,7 @@ export default function Contact(props){
                             variant="contained" 
                             className={classes.sendButton} 
                             disabled={name.length === 0 || message.length === 0 || phoneHelper.length !== 0|| emailHelper.length !== 0} 
-                            onClick={()=>setOpen(true)}
+                            onClick={onConfirm}
                             >
                                 Send Message
                                 <img src={airplane} alt="airplane" style={{marginLeft:"1em"}}/>
