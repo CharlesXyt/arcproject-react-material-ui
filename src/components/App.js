@@ -12,6 +12,7 @@ import Websites from './WebsiteDevelopment'
 import Revolution from './Revolution'
 import About from './About'
 import Contact from './Contact'
+import Estimate from './Estimate'
 
 function App(props) {
 
@@ -31,7 +32,7 @@ function App(props) {
           <Route exact path="/revolution" render={(props) => <Revolution {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/about" render={(props) => <About {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
           <Route exact path="/contact" render={(props) => <Contact {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
-          <Route exact path="/estimate" component={() => <div>estimate</div>}></Route>
+          <Route exact path="/estimate" render={(props) => <Estimate {...props} setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>}></Route>
         </Switch>
         <Footer setValue={setValue} setMenuItemSelected={setMenuItemSelected}/>
       </BrowserRouter>
