@@ -199,7 +199,7 @@ export default function Header(props){
 
     const tabs = (
         <React.Fragment>
-            <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor="primary">
+            <Tabs value={value === 5 ? false : value} onChange={handleChange} className={classes.tabContainer} indicatorColor="primary">
                 {routes.map((item,index)=>(
                     <Tab 
                         key={"tab "+index}
