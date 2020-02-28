@@ -849,10 +849,11 @@ export default function Estimate(props) {
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   className={classes.message}
+                  placeholder="Tell us more about your project"
                 />
               </Grid>
               <Grid item>
-                <Typography align={matchesSM ? "center" : undefined} variant="body1" paragraph>We can create this digital solution for an estimated <span className={classes.specialText}>${total.toFixed(2)}</span></Typography>
+                <Typography align={matchesSM ? "center" : undefined} variant="body1" paragraph style={{lineHeight:1.25}}>We can create this digital solution for an estimated <span className={classes.specialText}>${total.toFixed(2)}</span></Typography>
                 <Typography align={matchesSM ? "center" : undefined} variant="body1" paragraph>Fill out your name, phone number, and email, place your request, and we'll get back to you with details moving forward and a final price</Typography>
               </Grid>
             </Grid>
@@ -864,7 +865,12 @@ export default function Estimate(props) {
               </Hidden>
 
               <Grid item>
-                <Button variant="contained" className={classes.estimateButton} onClick={sendEstimate}>
+                <Button 
+                variant="contained" 
+                className={classes.estimateButton} 
+                onClick={sendEstimate}
+                disabled={name.length === 0 || message.length === 0 || phoneHelper.length !== 0 || emailHelper.length !== 0}
+                >
                   {loading ? <CircularProgress /> : (
                     <React.Fragment>
                       Place Request

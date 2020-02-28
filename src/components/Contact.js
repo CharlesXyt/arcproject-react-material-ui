@@ -223,6 +223,7 @@ export default function Contact(props) {
                                 value={message}
                                 onChange={(event) => setMessage(event.target.value)}
                                 className={classes.message}
+                                placeholder="Tell us more about your project"
                             />
                         </Grid>
                         <Grid item container justify="center" style={{ marginTop: "2em" }}>
@@ -269,6 +270,7 @@ export default function Contact(props) {
                                 value={message}
                                 onChange={(event) => setMessage(event.target.value)}
                                 className={classes.message}
+                                placeholder="Tell us more about your project"
                             />
                         </Grid>
                     </Grid>
