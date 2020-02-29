@@ -32,8 +32,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     paragraphContainer:{
-        width:"25em",
-        
+        maxWidth:"25em"
     }
 
 }))
@@ -87,7 +86,7 @@ export default function WebsiteDevelopment(props){
                             <Typography  align="center" variant="h4" gutterBottom>Analytics</Typography>
                         </Grid>
                         <Grid item>
-                            <img src={analytics} alt="analytics"/>
+                            <img src={analytics} alt="analytics" width="100%"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -104,7 +103,7 @@ export default function WebsiteDevelopment(props){
                             <Typography  align="center" variant="h4" gutterBottom>E-Commerce</Typography>
                         </Grid>
                         <Grid item>
-                            <img src={ecommerce} alt="ecommerce"/>
+                            <img src={ecommerce} alt="ecommerce" width="100%"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -121,7 +120,7 @@ export default function WebsiteDevelopment(props){
                             <Typography align="center"  variant="h4" gutterBottom>Outreach</Typography>
                         </Grid>
                         <Grid item>
-                            <img src={outreach} alt="outreach"/>
+                            <img src={outreach} alt="outreach" width="100%"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -138,7 +137,7 @@ export default function WebsiteDevelopment(props){
                             <Typography  align="center" variant="h4" gutterBottom>Search Engine <br/>Optimization</Typography>
                         </Grid>
                         <Grid item>
-                            <img src={seo} alt="ecommerce"/>
+                            <img src={seo} alt="ecommerce" width="100%"/>
                         </Grid>
                     </Grid>
                 </Grid>

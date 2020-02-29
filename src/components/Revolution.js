@@ -93,7 +93,7 @@ export default function Revolution(props){
                 
                 <Grid item container direction="column" lg style={{maxWidth:"40em"}}>
                     <Grid item>
-                        <Typography variant="h4" align="left" gutterBottom>Technology</Typography>
+                        <Typography variant="h4"align={matchesMD ?"center" :"left"} gutterBottom>Technology</Typography>
                     </Grid>
                     <Grid item >
                         <Typography variant="body1" paragraph align={matchesMD ? "center":"left"}>In 2013, Facebook invented a new way of building websites. This new system, React.js, completely revolutionizes the process and practice of website development.</Typography>
