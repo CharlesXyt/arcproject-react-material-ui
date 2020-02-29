@@ -33,7 +33,7 @@ import persons from '../assets/persons.svg'
 import people from '../assets/people.svg'
 import info from '../assets/info.svg'
 import bell from '../assets/bell.svg'
-import users from '../assets/users.svg'
+import usersIcon from '../assets/users.svg'
 import iphone from '../assets/iphone.svg'
 import gps from '../assets/gps.svg'
 import customized from '../assets/customized.svg'
@@ -202,7 +202,7 @@ const softwareQuestions = [
         id: 1,
         title: "Users/Authentication",
         subtitle: null,
-        icon: users,
+        icon: usersIcon,
         iconAlt: "outline of a person with a plus sign",
         selected: false,
         cost: 25
